@@ -157,6 +157,13 @@ class Lambdasian {
         + `demo` receives a `subject` string as an argument and returns the phrase 'Today we are learning about {subject}' where subject is the param passed in.
         + `grade` receives a `student` object and a `subject` string as arguments and returns '{student.name} receives a perfect score on {subject}'
 */
+
+function getRandomInt(min, max){
+  min = Math.ceil(min)
+  max = Math.floor(max)
+  return Math.floor(Math.random() * (max-min)) + min 
+
+}
 class Instructor extends Lambdasian {
   constructor(args){
     super(args)
@@ -170,7 +177,11 @@ class Instructor extends Lambdasian {
   grade(student, subject){
     return `${student.name} receives a perfect score on ${subject}`
   }
+  modStudentGrade(student){
+    student.grade += getRandomInt(-10,13)
+  }
 }
+
 
 /*
   TASK 5
@@ -193,6 +204,7 @@ class Student extends Lambdasian{
     this.previousBackground = args.previousBackground
     this.className = args.className
     this.favSubjects = args.favSubjects
+    this.grade = 60
   }
   listSubjects(){
     return `Loving ${this.favSubjects}`
@@ -202,6 +214,15 @@ class Student extends Lambdasian{
   }
   sprintChallenge(subject){
     return `${this.name} has begun sprint challenge on ${subject}`
+  }
+  graduate(){
+    if (this.grade > 75){
+      alert(`Congratulations, you have graduated from Lambda school with ${this.grade}`)
+      return `Hurray, you have graduated with honors with a grade of ${this.grade}`
+    }
+    else{
+      alert("Keep studying kid")
+    }
   }
 
 }
@@ -242,6 +263,32 @@ class ProjectManager extends Instructor{
       + This method, when called, will check the grade of the student and see if they're ready to graduate from Lambda School
       + If the student's grade is above a 70% let them graduate! Otherwise go back to grading their assignments to increase their score.
 */
+
+
+let Brit = new Instructor(
+  {
+  name: "Brit",
+  age: 25,
+  location: "Canada"
+}
+)
+let Loralie = new ProjectManager({
+    name: "Loralie",
+    age: 25,
+    location: "Utah"
+  }
+)
+let Lisa = new Student(
+
+  {
+    name: "Lisa",
+    age: 25,
+    location: "San Francsico"
+})
+
+// Brit.modStudentGrade(Lisa)
+
+
 
 ///////// END OF CHALLENGE /////////
 ///////// END OF CHALLENGE /////////
