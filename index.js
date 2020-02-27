@@ -178,7 +178,9 @@ class Instructor extends Lambdasian {
     return `${student.name} receives a perfect score on ${subject}`
   }
   modStudentGrade(student){
-    student.grade += getRandomInt(-10,13)
+    const modAmt = getRandomInt(-10,13)
+    student.grade += modAmt
+    return `Grade modified by ${modAmt}` 
   }
 }
 
@@ -269,13 +271,21 @@ let Brit = new Instructor(
   {
   name: "Brit",
   age: 25,
-  location: "Canada"
-}
+  location: "Canada",
+  specialty: "Javascript",
+  favLanguage: "CSS",
+  catchPhrase: "You can do it"
+  }
 )
 let Loralie = new ProjectManager({
     name: "Loralie",
     age: 25,
-    location: "Utah"
+    location: "Utah",
+    specialty: "Javascript",
+    favLanguage: "HTML",
+    catchPhrase: "You got this",
+    gradClassName: "Web29",
+    favInstructor: "Brit Hemming"
   }
 )
 let Lisa = new Student(
@@ -283,11 +293,13 @@ let Lisa = new Student(
   {
     name: "Lisa",
     age: 25,
-    location: "San Francsico"
+    location: "San Francsico",
+    className: "Web29",
+    previousBackground: "Construction Management",
+    favSubjects: "Javascript"
 })
 
-// Brit.modStudentGrade(Lisa)
-
+// Brit.modStudentGrade(Lisa) // Do in console instead
 
 
 ///////// END OF CHALLENGE /////////
