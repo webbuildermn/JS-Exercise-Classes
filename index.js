@@ -21,6 +21,7 @@ class Airplane {
   }
 }
 
+const Jimmy = new Airplane
 /*
 // 👇 COMPLETE YOUR WORK BELOW 👇
 // 👇 COMPLETE YOUR WORK BELOW 👇
