@@ -9,24 +9,24 @@
 
 // EXAMPLE SOLUTION CODE:
 class Airplane {
-  constructor(name) {
-    this.name = name;
-    this.isFlying = false;
-  }
-  takeOff() {
-    this.isFlying = true;
-  }
-  land() {
-    this.isFlying = false;
-  }
+    constructor(name) {
+        this.name = name;
+        this.isFlying = false;
+    }
+    takeOff() {
+        this.isFlying = true;
+    }
+    land() {
+        this.isFlying = false;
+    }
 }
 
 const Jimmy = new Airplane
-/*
-// 👇 COMPLETE YOUR WORK BELOW 👇
-// 👇 COMPLETE YOUR WORK BELOW 👇
-// 👇 COMPLETE YOUR WORK BELOW 👇
-*/
+    /*
+    // 👇 COMPLETE YOUR WORK BELOW 👇
+    // 👇 COMPLETE YOUR WORK BELOW 👇
+    // 👇 COMPLETE YOUR WORK BELOW 👇
+    */
 
 /*
   TASK 1
@@ -42,8 +42,35 @@ const Jimmy = new Airplane
 */
 
 class Person {
-
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+        this.stomach = []
+    }
+    eat(food) {
+        if (this.stomach.length < 10) {
+            this.stomach.push(food)
+        }
+    }
+    toString() {
+      return `${this.name}, ${this.age}`
+    }
+    poop() {
+        this.stomach = []
+    }
 }
+
+// var Jack = new Person("Jack", 20)
+// Jack.eat("Pineapple")
+// Jack.eat("Pig")
+// Jack.eat("Potatoes")
+// Jack.eat("Pork")
+// Jack.eat("Pickles")
+// Jack.eat("Pancakes")
+// Jack.eat("Poptarts")
+// Jack.poop()
+
+
 
 /*
   TASK 2
@@ -59,7 +86,16 @@ class Person {
         + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
 */
 
-class Car {
+class Car{
+  constructor(model, milesPerGallon){
+    this.tank = 0;
+    this.odometer = 0;
+    this.model = model;
+    this.milesPerGallon = milesPerGallon;
+  }
+  fill(gallons){
+    this.tank += gallons;
+  }
 
 }
 
@@ -146,12 +182,12 @@ class ProjectManager {
 ///////// END OF CHALLENGE /////////
 ///////// END OF CHALLENGE /////////
 if (typeof exports !== 'undefined') {
-  module.exports = module.exports || {}
-  if (Airplane) { module.exports.Airplane = Airplane }
-  if (Person) { module.exports.Person = Person }
-  if (Car) { module.exports.Car = Car }
-  if (Lambdasian) { module.exports.Lambdasian = Lambdasian }
-  if (Instructor) { module.exports.Instructor = Instructor }
-  if (Student) { module.exports.Student = Student }
-  if (ProjectManager) { module.exports.ProjectManager = ProjectManager }
+    module.exports = module.exports || {}
+    if (Airplane) { module.exports.Airplane = Airplane }
+    if (Person) { module.exports.Person = Person }
+    if (Car) { module.exports.Car = Car }
+    if (Lambdasian) { module.exports.Lambdasian = Lambdasian }
+    if (Instructor) { module.exports.Instructor = Instructor }
+    if (Student) { module.exports.Student = Student }
+    if (ProjectManager) { module.exports.ProjectManager = ProjectManager }
 }
