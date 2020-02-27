@@ -53,7 +53,7 @@ class Person {
         }
     }
     toString() {
-      return `${this.name}, ${this.age}`
+        return `${this.name}, ${this.age}`
     }
     poop() {
         this.stomach = []
@@ -86,18 +86,39 @@ class Person {
         + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
 */
 
-class Car{
-  constructor(model, milesPerGallon){
-    this.tank = 0;
-    this.odometer = 0;
-    this.model = model;
-    this.milesPerGallon = milesPerGallon;
-  }
-  fill(gallons){
-    this.tank += gallons;
-  }
+class Car {
+    constructor(model, milesPerGallon) {
+        this.tank = 0;
+        this.odometer = 0;
+        this.model = model;
+        this.milesPerGallon = milesPerGallon;
+    }
+    fill(gallons) {
+        this.tank += gallons;
+    }
+    drive(distance) {
+        let drivableDistance = this.tank * this.milesPerGallon // "miles" in the tank
 
+        // case 1 - can't go all the way
+        if (distance >= drivableDistance) {
+            this.odometer += drivableDistance
+            this.tank = 0
+            return `I ran out of fuel at ${drivableDistance}`
+
+        // case 2 - can go all the way
+        } else { 
+          this.odometer += distance;
+          this.tank -= distance / this.milesPerGallon // e.g. 100miles @ 10mpg => use 10 gallons
+        }
+
+
+    }
 }
+
+
+const myPorchse = new Car("Porsche 911", 7)
+myPorchse.fill(30)
+myPorchse.drive(100)
 
 /*
   TASK 3
