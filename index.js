@@ -9,23 +9,24 @@
 
 // EXAMPLE SOLUTION CODE:
 class Airplane {
-  constructor(name) {
-    this.name = name;
-    this.isFlying = false;
-  }
-  takeOff() {
-    this.isFlying = true;
-  }
-  land() {
-    this.isFlying = false;
-  }
+    constructor(name) {
+        this.name = name;
+        this.isFlying = false;
+    }
+    takeOff() {
+        this.isFlying = true;
+    }
+    land() {
+        this.isFlying = false;
+    }
 }
 
-/*
-// 👇 COMPLETE YOUR WORK BELOW 👇
-// 👇 COMPLETE YOUR WORK BELOW 👇
-// 👇 COMPLETE YOUR WORK BELOW 👇
-*/
+const Jimmy = new Airplane
+    /*
+    // 👇 COMPLETE YOUR WORK BELOW 👇
+    // 👇 COMPLETE YOUR WORK BELOW 👇
+    // 👇 COMPLETE YOUR WORK BELOW 👇
+    */
 
 /*
   TASK 1
@@ -41,8 +42,35 @@ class Airplane {
 */
 
 class Person {
-
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+        this.stomach = []
+    }
+    eat(food) {
+        if (this.stomach.length < 10) {
+            this.stomach.push(food)
+        }
+    }
+    toString() {
+        return `${this.name}, ${this.age}`
+    }
+    poop() {
+        this.stomach = []
+    }
 }
+
+// var Jack = new Person("Jack", 20)
+// Jack.eat("Pineapple")
+// Jack.eat("Pig")
+// Jack.eat("Potatoes")
+// Jack.eat("Pork")
+// Jack.eat("Pickles")
+// Jack.eat("Pancakes")
+// Jack.eat("Poptarts")
+// Jack.poop()
+
+
 
 /*
   TASK 2
@@ -59,8 +87,38 @@ class Person {
 */
 
 class Car {
+    constructor(model, milesPerGallon) {
+        this.tank = 0;
+        this.odometer = 0;
+        this.model = model;
+        this.milesPerGallon = milesPerGallon;
+    }
+    fill(gallons) {
+        this.tank += gallons;
+    }
+    drive(distance) {
+        let drivableDistance = this.tank * this.milesPerGallon // "miles" in the tank
 
+        // case 1 - can't go all the way
+        if (distance >= drivableDistance) {
+            this.odometer += drivableDistance
+            this.tank = 0
+            return `I ran out of fuel at ${drivableDistance}`
+
+        // case 2 - can go all the way
+        } else { 
+          this.odometer += distance;
+          this.tank -= distance / this.milesPerGallon // e.g. 100miles @ 10mpg => use 10 gallons
+        }
+
+
+    }
 }
+
+
+const myPorchse = new Car("Porsche 911", 7)
+myPorchse.fill(30)
+myPorchse.drive(100)
 
 /*
   TASK 3
@@ -75,7 +133,14 @@ class Car {
         + {name} and {location} of course come from the instance's own properties.
 */
 class Lambdasian {
-
+  constructor(args){
+    this.name = args.name
+    this.age = args.age
+    this.location = args.location
+  }
+  speak(){
+    return `Hello my name is ${this.name}. I am from ${this.location}`
+  }
 }
 
 /*
@@ -92,9 +157,33 @@ class Lambdasian {
         + `demo` receives a `subject` string as an argument and returns the phrase 'Today we are learning about {subject}' where subject is the param passed in.
         + `grade` receives a `student` object and a `subject` string as arguments and returns '{student.name} receives a perfect score on {subject}'
 */
-class Instructor {
+
+function getRandomInt(min, max){
+  min = Math.ceil(min)
+  max = Math.floor(max)
+  return Math.floor(Math.random() * (max-min)) + min 
 
 }
+class Instructor extends Lambdasian {
+  constructor(args){
+    super(args)
+    this.specialty = args.specialty
+    this.favLanguage = args.favLanguage
+    this.catchPhrase = args.catchPhrase
+  }
+  demo(subj){
+    return `Today we are learning about ${subj}`
+  }
+  grade(student, subject){
+    return `${student.name} receives a perfect score on ${subject}`
+  }
+  modStudentGrade(student){
+    const modAmt = getRandomInt(-10,13)
+    student.grade += modAmt
+    return `Grade modified by ${modAmt}` 
+  }
+}
+
 
 /*
   TASK 5
@@ -111,7 +200,32 @@ class Instructor {
         + `PRAssignment` a method that receives a subject as an argument and returns `student.name has submitted a PR for {subject}`
         + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
 */
-class Student {
+class Student extends Lambdasian{
+  constructor(args){
+    super(args)
+    this.previousBackground = args.previousBackground
+    this.className = args.className
+    this.favSubjects = args.favSubjects
+    this.grade = 60
+  }
+  listSubjects(){
+    return `Loving ${this.favSubjects}`
+  }
+  PRAssignment(subject){
+    return `${this.name} has submitted a PR for ${subject}`
+  }
+  sprintChallenge(subject){
+    return `${this.name} has begun sprint challenge on ${subject}`
+  }
+  graduate(){
+    if (this.grade > 75){
+      alert(`Congratulations, you have graduated from Lambda school with ${this.grade}`)
+      return `Hurray, you have graduated with honors with a grade of ${this.grade}`
+    }
+    else{
+      alert("Keep studying kid")
+    }
+  }
 
 }
 
@@ -128,7 +242,18 @@ class Student {
         + `standUp` a method that takes in a slack channel and returns `{name} announces to {channel}, @channel standy times!`
         + `debugsCode` a method that takes in a student object and a subject and returns `{name} debugs {student.name}'s code on {subject}`
 */
-class ProjectManager {
+class ProjectManager extends Instructor{
+  constructor(args){
+    super(args)
+    this.gradClassName = args.gradClassName
+    this.favInstructor = args.favInstructor
+  }
+  standUp(slackChannel){
+    return `${this.name} announces to ${slackChannel}, @channel standy times!`
+  }
+  debugsCode(student, subject){
+    return `${this.name} debugs ${student.name}'s code on ${subject}`
+  }
 
 }
 
@@ -141,16 +266,52 @@ class ProjectManager {
       + If the student's grade is above a 70% let them graduate! Otherwise go back to grading their assignments to increase their score.
 */
 
+
+let Brit = new Instructor(
+  {
+  name: "Brit",
+  age: 25,
+  location: "Canada",
+  specialty: "Javascript",
+  favLanguage: "CSS",
+  catchPhrase: "You can do it"
+  }
+)
+let Loralie = new ProjectManager({
+    name: "Loralie",
+    age: 25,
+    location: "Utah",
+    specialty: "Javascript",
+    favLanguage: "HTML",
+    catchPhrase: "You got this",
+    gradClassName: "Web29",
+    favInstructor: "Brit Hemming"
+  }
+)
+let Lisa = new Student(
+
+  {
+    name: "Lisa",
+    age: 25,
+    location: "San Francsico",
+    className: "Web29",
+    previousBackground: "Construction Management",
+    favSubjects: "Javascript"
+})
+
+// Brit.modStudentGrade(Lisa) // Do in console instead
+
+
 ///////// END OF CHALLENGE /////////
 ///////// END OF CHALLENGE /////////
 ///////// END OF CHALLENGE /////////
 if (typeof exports !== 'undefined') {
-  module.exports = module.exports || {}
-  if (Airplane) { module.exports.Airplane = Airplane }
-  if (Person) { module.exports.Person = Person }
-  if (Car) { module.exports.Car = Car }
-  if (Lambdasian) { module.exports.Lambdasian = Lambdasian }
-  if (Instructor) { module.exports.Instructor = Instructor }
-  if (Student) { module.exports.Student = Student }
-  if (ProjectManager) { module.exports.ProjectManager = ProjectManager }
+    module.exports = module.exports || {}
+    if (Airplane) { module.exports.Airplane = Airplane }
+    if (Person) { module.exports.Person = Person }
+    if (Car) { module.exports.Car = Car }
+    if (Lambdasian) { module.exports.Lambdasian = Lambdasian }
+    if (Instructor) { module.exports.Instructor = Instructor }
+    if (Student) { module.exports.Student = Student }
+    if (ProjectManager) { module.exports.ProjectManager = ProjectManager }
 }
